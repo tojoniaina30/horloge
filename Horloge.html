@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horloge</title>
+    <style>
+        div {
+          display: flex;
+          flex-direction: row-reverse;
+          align-items: center;
+          justify-content: center;
+        }
+        .bouton__h1 {
+          width: 25px;
+        }
+        .bouton__h1 h1 {
+          animation-name: clignote;
+          animation-duration: 1s;
+          animation-iteration-count: infinite;
+        }
+        @keyframes clignote {
+          1% {color:rgb(164, 163, 163)}
+          50% {color: grey;}
+          100% {color: white;}
+        }
+
+        .segondra {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          
+          width: 75px;
+          height: 75px;
+          background-color: aqua;
+          border: 2px rgb(164, 163, 163) solid;
+          border-radius: 5px;
+        }
+
+        h1 {
+            color: rgb(164, 163, 163);
+        }
+
+    </style>
+</head>
+<body>  
+    <script>
+        const div = document.createElement("div");
+        document.body.append(div);
+
+        const sec = document.createElement("h1");
+        sec.classList.add("segondra")
+        div.append(sec);
+
+        const divKely = document.createElement("div");
+        divKely.classList.add("bouton__h1")
+        div.append(divKely);
+
+          const btn = document.createElement("h1");
+          btn.textContent = ":"
+          divKely.append(btn);
+
+        const min = document.createElement("h1");
+        min.classList.add("segondra")
+        div.append(min);
+
+        const divBe = document.createElement("div");
+        divBe.classList.add("bouton__h1")
+        div.append(divBe);
+
+          const btn2 = document.createElement("h1");
+          btn2.textContent = ":"
+          divBe.append(btn2);
+
+        const hrs = document.createElement("h1");
+        hrs.classList.add("segondra")
+        div.append(hrs);
+
+        const date = new Date ();
+            var hours = date.getHours();;
+            var minute = date.getMinutes();;
+            var second = date.getSeconds ();;
+
+            sec.textContent = second;
+            min.textContent = minute;
+            hrs.textContent = hours;
+
+          setInterval(() => {
+            sec.textContent = second++;
+            if (second > 59){
+                second = 0
+                min.textContent = minute += 1
+                if (minute >59){
+                    minute =0
+                    hrs.textContent = hours +=1
+                }
+            }
+          }, 1000 );
+    </script>
+</body>
+</html>
+
